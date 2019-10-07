@@ -1,18 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Cool little JS game</title>
+    <!--
+        following this tutorial to create a turn mased mine adventure game
+        https://nluqo.github.io/broughlike-tutorial/stage1.html
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cool little JS game</title>
+    <style>
+        canvas{
+            outline: 1px solid white;
+        }
+
+        body{
+            background-color: indigo;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+    
+    <script src="js/game.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/tile.js"></script>
+    <script src="js/monster.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/spell.js"></script>
 </head>
 <body>
     <canvas></canvas>
     <script>
-        canvas = document.querySelector("canvas");
-        ctx = canvas.getContext("2d");
-        
         x = y = 0;
+        tileSize = 64;
+        numTiles = 9;
+        uiWidth = 4;
 
         document.querySelector("html").onkeypress = function(e){
             if(e.key=="w") y--;
@@ -22,10 +44,13 @@
         };
 
         function draw(){
+            ctx.clearRect(0,0,1000,1000)
             ctx.fillRect (x*20,y*20,20,20);
         }
 
         setInterval(draw, 15);
+
+        setupCanvas();
     </script>
 </body>
 </html>
