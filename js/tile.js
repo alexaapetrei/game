@@ -5,6 +5,11 @@ class Tile{
         this.sprite = sprite;
         this.passable = passable;
     }
+
+        replace(newTileType){
+            tiles[this.x][this.y] = new newTileType(this.x, this.y);
+            return tiles[this.x][this.y];
+        }
     
         //manhattan distance
         dist(other){
