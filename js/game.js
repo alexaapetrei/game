@@ -16,8 +16,8 @@ function drawSprite(sprite, x, y){
         0,
         16,
         16,
-        x*tileSize,
-        y*tileSize,
+        x*tileSize + shakeX,
+        y*tileSize + shakeY,
         tileSize,
         tileSize
     );
@@ -26,6 +26,8 @@ function drawSprite(sprite, x, y){
 function draw(){
     if(gameState == "running" || gameState == "dead"){  
     ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    screenshake()
 
     for(let i=0;i<numTiles;i++){
         for(let j=0;j<numTiles;j++){
@@ -43,6 +45,15 @@ function draw(){
     drawText("Score: "+score, 30, false, 70, "violet");
 
 }
+}
+
+function screenshake(){
+    if(shakeAmount){
+        shakeAmount--;
+    }
+    let shakeAngle = Math.random()*Math.PI*2;
+    shakeX = Math.round(Math.cos(shakeAngle)*shakeAmount);
+    shakeY = Math.round(Math.sin(shakeAngle)*shakeAmount);
 }
 
 function tick(){
